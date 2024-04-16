@@ -1,0 +1,16 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This makes the .home-page take up the full viewport height */
+  width: 100vw;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: gold;
+  font-size: 40px;
+}

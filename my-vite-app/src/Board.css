@@ -1,0 +1,145 @@
+.header-container {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  background: goldenrod;
+}
+
+.header-container h1 {
+  margin-right: 20px;
+}
+
+.header-container ul {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+}
+
+.header-container ul li {
+  cursor: pointer;
+}
+
+.header-container ul li:hover {
+  color: white;
+}
+
+.header-container ul li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Section for choosing sports*/
+.board-page {
+  padding-top: 0px; /* Adjust this value to match the height of your header container */
+}
+
+.sports-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 145px;
+}
+
+.sport {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  place-items: center;
+  grid-gap: 0px;
+  gap: 10px;
+  color: #fcfcfc;
+  font-family: "IndustryBook";
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 7px;
+  background-color: #121320;
+  height: 80px;
+  border: 2px solid transparent;
+  text-align: center;
+  min-width: 80px;
+  margin: 3px;
+}
+
+.coming-soon {
+  background: rgb(180, 178, 178);
+}
+
+
+/* Section for displaying statistics */
+.stat-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  list-style-type: none;
+  margin-top: 85px;
+}
+
+.stat {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.stat-active {
+  background-color: #f0f0f0;
+  color: red;
+}
+
+.pick-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  list-style-type: none;
+}
+
+.pick {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.pick-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.games-container {
+  flex: 1;
+  margin-left: 250px;
+}
+
+.entries-container {
+  flex: 1;
+  margin-right: 250px;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This makes the .home-page take up the full viewport height */
+  width: 100vw;
+  background-color: whitesmoke;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: gold;
+  font-size: 40px;
+  text-shadow: #121320 1px 1px 1px;
+}
