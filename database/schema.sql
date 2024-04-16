@@ -8,11 +8,10 @@ DROP TABLE IF EXISTS NbaPlayers;
 DROP TABLE IF EXISTS Teams;
 DROP TABLE IF EXISTS Users;
 
--- Common tables for MLB and NBA
+-- Common tables for MLB 
 CREATE TABLE IF NOT EXISTS Teams (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    sport VARCHAR(50) NOT NULL
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Users (

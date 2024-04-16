@@ -24,7 +24,7 @@ function Board() {
       }
     };
 
-    const fetchMlbPicks = async () => { // New function to fetch the picks
+    const fetchMlbPicks = async () => {
       try {
         const response = await axios.get('http://localhost:3001/picks');
         console.log('Fetched MLB Picks:', response.data);
@@ -35,7 +35,7 @@ function Board() {
     };
 
     fetchMlbGames();
-    fetchMlbPicks(); // Call the new function
+    fetchMlbPicks();
   }, []);
 
 
@@ -48,7 +48,7 @@ function Board() {
     if (selectedPick) {
       console.log('making pick:', selectedPick);
       setPicks([...picks, selectedPick]);
-      setSelectedPick(null); // Reset selected pick after making pick
+      setSelectedPick(null);
     }
     navigate('/my-entries');
   };
@@ -70,129 +70,50 @@ function Board() {
   };
 
   return (
-  <div>
-    {/* <PicksContext.Provider value={{ picks, setPicks }}> */}
-      <div className="board-page">
-        <div className="header-container">
-          <h1>Board</h1>
-          <ul>
-            <li><Link to="/board">Board</Link></li>
-            <li><Link to="/my-entries">My Entries</Link></li>
-            <li onClick={handleFutureEnhancementsClick}>Future Enhancements</li>
-          </ul>
+    <div className="board-page">
+      <div className="header-container">
+        <h1>Board</h1>
+        <ul>
+          <li><Link to="/board">Board</Link></li>
+          <li><Link to="/my-entries">My Entries</Link></li>
+          <li onClick={handleFutureEnhancementsClick}>Future Enhancements</li>
+        </ul>
+      </div>
+      <div className="sports-container">
+        <div className="sport" onClick={() => handleStatClick('MLB')}>
+          MLB
         </div>
-        <div className="sports-container">
-          <div className="sport" onClick={() => handleStatClick('MLB')}>
-          </div>
-          <div className="sport coming-soon" onClick={handleComingSoonClick}>
-            NBA (Coming Soon)
-          </div>
-          <div className="sport coming-soon" onClick={handleComingSoonClick}>
-            NFL (Coming Soon)
-          </div><div className="sport coming-soon" onClick={handleComingSoonClick}>
-            NHL (Coming Soon)
-          </div><div className="sport coming-soon" onClick={handleComingSoonClick}>
-            FIFA (Coming Soon)
-          </div><div className="sport coming-soon" onClick={handleComingSoonClick}>
-            WNBA (Coming Soon)
-          </div><div className="sport coming-soon" onClick={handleComingSoonClick}>
-            GOLF (Coming Soon)
-          </div><div className="sport coming-soon" onClick={handleComingSoonClick}>
-            MMA (Coming Soon)
-          </div><div className="sport coming-soon" onClick={handleComingSoonClick}>
-            F1 (Coming Soon)
-          </div>
+        <div className="sport coming-soon" onClick={handleComingSoonClick}>
+          NBA (Coming Soon)
         </div>
-        <nav className="stat-navigation" aria-label="Stats Navigation">
-          <div className="pp-container stat-container">
-            <ul>
-              <li>
-                <div
-                  role="button"
-                  className={`stat ${selectedStat === 'Strikeouts' ? 'stat-active' : ''}`}
-                  tabIndex="0"
-                  aria-current="true"
-                  onClick={() => handleStatClick('Strikeouts')}
-                >
-                  Strikeouts
-                </div>
-              </li>
-              <li>
-                <div
-                  role="button"
-                  className={`stat ${selectedStat === 'Walks' ? 'stat-active' : ''}`}
-                  tabIndex="0"
-                  aria-current="true"
-                  onClick={() => handleStatClick('Walks')}
-                >
-                  Walks
-                </div>
-              </li>
-              <li>
-                <div
-                role="button"
-                className={`stat ${selectedStat === 'Strikes' ? 'stat-active' : ''}`}
-                tabIndex="0" aria-current="true"
-                onClick={() => handleStatClick('Strikes')}
-                >
-                  Strikes</div></li>
-              <li>
-                <div
-                role="button"
-                className={`stat ${selectedStat === 'Single' ? 'stat-active' : ''}`}
-                tabIndex="0" aria-current="true"
-                onClick={() => handleStatClick('Single')}
-                >
-                  Single
-                </div>
-              </li>
-              <li>
-                <div
-                role="button"
-                className={`stat ${selectedStat === 'Double' ? 'stat-active' : ''}`}
-                tabIndex="0" aria-current="true"
-                onClick={() => handleStatClick('Double')}
-                >
-                  Double
-                </div>
-              </li>
-              <li>
-                <div
-                role="button"
-                className={`stat ${selectedStat === 'Triple' ? 'stat-active' : ''}`}
-                tabIndex="0"
-                aria-current="true"
-                onClick={() => handleStatClick('Triple')}
-                >
-                  Triple
-                </div>
-              </li>
-              <li>
-                <div
-                role="button"
-                className={`stat ${selectedStat === 'Home Runs' ? 'stat-active' : ''}`}
-                tabIndex="0" aria-current="true"
-                onClick={() => handleStatClick('Home Runs')}
-                >
-                  Home Runs
-                </div>
-              </li>
-            </ul>
-            <hr className="border-soFresh-130 mt-2 hidden w-full border md:block" />
-          </div>
-        </nav>
-        <div className="container">
-          <div className="games-container">
-            {mlbPicks.length > 0 ? (
-              mlbPicks
+        <div className="sport coming-soon" onClick={handleComingSoonClick}>
+          MLB (Coming Soon)
+        </div>
+        <div className="sport coming-soon" onClick={handleComingSoonClick}>
+          NHL (Coming Soon)
+        </div>
+        <div className="sport coming-soon" onClick={handleComingSoonClick}>
+          GOLF (Coming Soon)
+        </div>
+        <div className="sport coming-soon" onClick={handleComingSoonClick}>
+          F1 (Coming Soon)
+        </div>
+        <div className="sport coming-soon" onClick={handleComingSoonClick}>
+          MMA (Coming Soon)
+        </div>
+      </div>
+      <nav className="stat-navigation" aria-label="Stats Navigation">
+        {/* Add stat navigation */}
+      </nav>
+      <div className="container">
+        <div className="games-container">
+          {mlbPicks.length > 0 ? (
+            mlbPicks
               .filter(game => {
-                // Convert game.game_date to a JavaScript Date object
                 const gameDate = new Date(Date.parse(game.game_date.replace(' ', 'T')));
-                const now = new Date();
-                const diffInHours = (gameDate - now) / 1000 / 60 / 60;
-                const statKey = selectedStat.toLowerCase().replace(' ', '_');
-                const statValue = game[statKey];
-                return diffInHours >= 0 && diffInHours <= 48 && statValue !== 0 && statValue !== '' && statValue !== null;
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Set today's time to midnight
+                return gameDate >= new Date('2024-04-04') && gameDate <= today;
               })
               .map(game => {
                 const statKey = selectedStat.toLowerCase().replace(' ', '_');
@@ -202,35 +123,17 @@ function Board() {
                     {(game[statKey] !== 0 && game[statKey] !== '' && game[statKey] !== null) && ` - ${game[statKey]} ${selectedStat}`}
                     <button className="add-pick-button" onClick={() => addPick(game)}>Add Pick</button>
                     <button onClick={handleOpenBets}>Open Bets</button>
-                    <div className="over-under over rounded-[4px] selected under">
-                    </div>
                   </div>
                 );
               })
-            ) : (
-              <div>No MLB games available</div>
-            )}
-          </div>
-        <div className="pick-container">
-          <div className="entry-box">
-            {picks.map((pick, index) => (
-              <div key={index}>
-                {pick.home_team} vs {pick.away_team} - {pick.game_date} - {pick.player_name} - {pick[selectedStat.toLowerCase().replace(' ', '_')]} {selectedStat}
-              </div>
-            ))}
-              <button onClick={handleMakePick} disabled={picks.length === 0}>Make a pick</button>
-          </div>
+          ) : (
+            <div>No MLB games available</div>
+          )}
         </div>
-            </div>
-            <div className="entry-box">
-            {picks.map((pick, index) => (
-              <div key={index}>
-                {pick.home_team} vs {pick.away_team} - {pick.game_date} - {pick.player_name}
-              </div>
-            ))}
-          </div>
-    </div>
-    {/* </PicksContext.Provider> */}
+        <div className="pick-container">
+          {/* Display picks */}
+        </div>
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const pool = require('../database/db');
 const gamesRouter = require('./routes/games');
-const { simulateResultsAndUpdateStatus } = require('./simulateEntry');
+// const { simulateResultsAndUpdateStatus } = require('./simulateEntry');
 
 const app = express();
 const port = process.env.PORT || 3001;

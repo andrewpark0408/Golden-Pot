@@ -94,9 +94,14 @@ function MyEntries() {
           <button onClick={handleClearClick}>Clear</button>
         </div>
         {picks.map((pick, index) => (
-          <div key={pick.id} className="entry">
+          <div key={pick.id} className="entry" >
             <p>
-              {pick.home_team} vs {pick.away_team} - {pick.player_name} - {pick.stat} - {pick.value}
+              <small>
+              {pick.home_team} vs {pick.away_team}
+              </small>
+            </p>
+            <p>
+              {pick.player_name} - {pick.stat} - {pick.value}
             </p>
             <div className="more-less">
               <button onClick={() => handleOptionClick(pick.id, 'More')} className={selectedOption[pick.id] === 'More' ? 'selected' : ''}>More</button>
@@ -123,6 +128,7 @@ function MyEntries() {
             <div>
               <label>Balance: $</label>
               <span>{balance.toFixed(2)}</span>
+              <button onClick={() => setBalance(prevBalance => prevBalance + 100)}>Add $100</button>
             </div>
             <div>
               <label>Promo: $</label>
